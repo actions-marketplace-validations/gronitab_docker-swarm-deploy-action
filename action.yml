@@ -1,5 +1,5 @@
-name: docker-swarm-deploy
-author: Stephen M. Coakley <me@stephencoakley.com>
+name: new-docker-swarm-deploy
+author: Originally Stephen M. Coakley <me@stephencoakley.com>, continued by Mikael Grön <skaramicke@gmail.com>
 description: A GitHub Action that enables you to publish your app as a Docker stack to a remote Docker swarm.
 inputs:
   remote_host:
