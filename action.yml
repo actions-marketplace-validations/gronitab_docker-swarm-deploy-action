@@ -5,8 +5,8 @@ inputs:
   remote_host:
     description: Docker host to connect to
     required: true
-  ssh_public_key:
-    description: SSH public key of the server
+  ssh_known_hosts:
+    description: SSH contents of known_hosts file
     required: false
   ssh_private_key:
     description: SSH private key to use to connect

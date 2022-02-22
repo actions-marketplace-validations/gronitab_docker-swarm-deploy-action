@@ -16,8 +16,8 @@ if [ ${INPUT_REMOTE_HOST#"ssh://"} != "$INPUT_REMOTE_HOST" ]; then
         exit 1
     fi
 
-    if [ -z "$INPUT_SSH_PUBLIC_KEY" ]; then
-        echo "Input ssh_public_key is required for SSH hosts!"
+    if [ -z "$INPUT_SSH_KNOWN_HOSTS" ]; then
+        echo "Input ssh_known_hosts is required for SSH hosts!"
         exit 1
     fi
 
@@ -25,13 +25,13 @@ if [ ${INPUT_REMOTE_HOST#"ssh://"} != "$INPUT_REMOTE_HOST" ]; then
 
     # Save private key to a file and register it with the agent.
     mkdir -p "$HOME/.ssh"
-    printf '%s' "$INPUT_SSH_PRIVATE_KEY" > "$HOME/.ssh/docker"
+    printf '%s\n' "$INPUT_SSH_PRIVATE_KEY" > "$HOME/.ssh/docker"
     chmod 600 "$HOME/.ssh/docker"
     eval $(ssh-agent)
     ssh-add "$HOME/.ssh/docker"
 
-    # Add public key to known hosts.
-    printf '%s %s\n' "$SSH_HOST" "$INPUT_SSH_PUBLIC_KEY" >> /etc/ssh/ssh_known_hosts
+    # Add known hosts.
+    printf '%s\n' "$INPUT_SSH_KNOWN_HOSTS" > /etc/ssh/ssh_known_hosts
 fi
 
 echo "Connecting to $INPUT_REMOTE_HOST..."

@@ -12,7 +12,7 @@ Below is a brief example on how the action can be used:
   with:
     remote_host: ssh://user@myswarm.com
     ssh_private_key: ${{ secrets.DOCKER_SSH_PRIVATE_KEY }}
-    ssh_public_key: ${{ secrets.DOCKER_SSH_PUBLIC_KEY }}
+    ssh_known_hosts: ${{ secrets.DOCKER_SSH_KNOWN_HOSTS }}
     args: stack deploy --compose-file stack.yaml coolapp
 ```
 
@@ -30,7 +30,7 @@ Arguments to pass to the `docker` command after connecting to the remote swarm.
 
 Specifies how to connect to your swarm with a Docker host to connect to, using the same syntax as the Docker [`--host` command line flag](https://docs.docker.com/engine/reference/commandline/cli/). This must be a manager node in your swarm for most operations to work.
 
-### `ssh_public_key`
+### `ssh_known_hosts`
 
 When connecting to Docker over SSH, this must contain the SSH public key of the server for verification. Optional.
 
